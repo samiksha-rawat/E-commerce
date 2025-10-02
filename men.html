@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Men's Collection | YUVAA E-COMMERCE</title>
+  <link rel="stylesheet" href="index.css">
+  <script src="index.js" defer></script>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+
+  <script src="wishlist.js" defer></script>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+  <nav class="navbar">
+    <!-- Logo -->
+    <a href="index.html" id="logo">YUVAA</a>
+
+    <!-- Hamburger (visible only on mobile) -->
+    <div class="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+    <!-- Navigation Menu -->
+    <ul class="nav-menu">
+      <!-- MEN -->
+      <li class="dropdown">
+        <a href="men.html" class="hover-underline dropdown-toggle">MEN</a>
+        <div class="dropdown-content dropbox">
+          <div class="column">
+            <a href="#"><h6>Topwear</h6></a>
+            <a href="#">T-Shirts</a>
+            <a href="#">Casual-Shirts</a>
+            <a href="#">Formal-Shirts</a>
+            
+          </div>
+          <div class="column">
+            <a href="#"><h6>Footwear</h6></a>
+            <a href="#">Sneakers</a>
+            <a href="#">Formal-Shoes</a>
+          </div>
+          <div class="column">
+            <a href="#"><h6>Fashion-Acessories</h6></a>
+            <a href="#">Wallets</a>
+            <a href="#">Watches</a>
+            <a href="#">Helmets</a>
+          </div>
+          <div class="column">
+            <a href="#"><h6>Bottomwear</h6></a>
+            <a href="#">Jeans</a>
+            <a href="#">Casual-Trousers</a>
+
+          </div>
+        </div>
+      </li>
+
+      <!-- WOMEN -->
+      <li class="dropdown">
+        <a href="women.html" class="hover-underline dropdown-toggle">WOMEN</a>
+        <div class="dropdown-content dropbox">
+          <div class="column">
+            <a href="#"><h6>Indian & Fusion-Wear</h6></a>
+            <a href="">Kurtas & Suits</a>
+            <a href="#">Sarees</a>
+            <a href="#">Ethnic-Wear</a>
+            <a href="#">Lehenga-Choli</a>
+            <a href="#">Duppatas & Shauls</a>
+          </div>
+          <div class="column">
+            <a href="#"><h6>Western Wear</h6></a>
+            <a href="#">Dresses</a>
+            <a href="#">Tops</a>
+            <a href="#">T-Shirts</a>
+            <a href="#">Jeans</a>
+            <a href="#">Shrugs</a>
+          </div>
+          <div class="column">
+            <a href="#"><h6>Footwear</h6></a>
+            <a href="#">Flats</a>
+            <a href="#">Casual-Shoes</a>
+            <a href="#">Boots</a>
+            <a href="#">Heels</a>
+            <a href="#">Sports Shoes</a>
+          </div>
+          <div class="column">
+            <a href="#"><h6>Jewellery</h6></a>
+            <a href="#">Fashion Jewellery</a>
+            <a href="#">Fine Jewellery</a>
+            <a href="#">Earrings</a>
+          </div>
+        </div>
+      </li>
+
+      <!-- KIDS -->
+      <li class="dropdown">
+        <a href="kids.html" class="hover-underline dropdown-toggle">KIDS</a>
+        <div class="dropdown-content dropbox">
+          <div class="column">
+            <a href="#"><h6>Boys Clothing</h6></a>
+            <a href="#">T-Shirts</a>
+            <a href="#">Shirts</a>
+            <a href="#">Shorts</a>
+            <a href="#">Jeans</a>
+            <a href="#">Trousers</a>
+          </div>
+          <div class="column">
+            <a href="#"><h6>Girls Clothing</h6></a>
+            <a href="#">Dresses</a>
+            <a href="#">Tops</a>
+            <a href="#">T-Shirts</a>
+            <a href="#">Clothing Sets</a>
+            <a href="#">Party Wear</a>
+          </div>
+          <div class="column">
+            <a href="#"><h6>Toys & Games</h6></a>
+            <a href="#">Action Figures</a>
+            <a href="#">Activity Toys</a>
+            <a href="#">Soft Toys</a>
+            <a href="#">Learning & Development</a>
+          </div>
+        </div>
+      </li>
+
+      <!-- BEAUTY -->
+      <li class="dropdown">
+        <a href="beauty.html" class="hover-underline dropdown-toggle">BEAUTY</a>
+        <div class="dropdown-content dropbox">
+          <div class="column">
+            <a href="#"><h6>Haircare</h6></a>
+            <a href="#">Shampoo</a>
+            <a href="#">Conditioner</a>
+            <a href="#">Hair Oil</a>
+            <a href="#">Hair Cream</a>
+            <a href="#">Hair Serum</a>
+          </div>
+          <div class="column">
+            <a href="#"><h6>Men's Grooming</h6></a>
+            <a href="#">Trimmers</a>
+            <a href="#">Beard Oil</a>
+            <a href="#">Hair Wax</a>
+          </div>
+          <div class="column">
+            <a href="#"><h6>Makeup</h6></a>
+            <a href="#">Lipstick</a>
+            <a href="#">Lip Gloss</a>
+            <a href="#">Kajal</a>
+            <a href="#">Nail Polish</a>
+          </div>
+        </div>
+      </li>
+    </ul>
+
+    <!-- Search Box -->
+    <div class="search-box">
+      <input type="text" placeholder="Search for products, brands and more...">
+      <button>
+        🔍
+      </button>
+    </div>
+
+    <!-- Icons -->
+   <div class="nav-icons">
+  <a href="wishlist.html" class="icon">❤️ <span>Wishlist (<span id="wishlist-count">0</span>)</span></a>
+  <a href="cart.html" class="icon">🛍️ <span>Cart (<span id="cart-count">0</span>)</span></a>
+</div>
+
+  </nav>
+</header>
+
+  <!-- Men's Products Section -->
+  <section class="featured" id="products">
+    <div class="container">
+      <h2 class="section-title">MEN'S COLLECTION</h2><hr>
+      <h3>TOPWEAR</h3><hr>
+      <h4>T-SHIRTS</h4>
+      <div class="products">
+
+        <!-- Product 1 -->
+        <div class="product-card">
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <img src="assets/t1-f.avif" alt="Product 1 Front">
+              </div>
+              <div class="flip-card-back">
+                <img src="assets/t1-b.avif" alt="Product 1 Back">
+              </div>
+            </div>
+          </div>
+          <h3>Open Knit: Slate Polos</h3>
+          <p>₹ 1499 <br>Price incl. of all taxes</p>
+          <button class="wishlist-btn" 
+                  data-name="Open Knit: Slate Polos"
+                  data-price="1499"
+                  data-image="assets/t1-f.avif">❤️ Add to Wishlist</button>
+          <button class="add-to-cart" 
+                  data-name="Open Knit: Slate Polos" 
+                  data-price="1499" 
+                  data-image="assets/t1-f.avif">🛍️ Add to Cart</button>
+        </div>
+         
+        <!-- Product 2 -->
+        <div class="product-card">
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <img src="assets/t2-f.avif" alt="Product 2 Front">
+              </div>
+              <div class="flip-card-back">
+                <img src="assets/t2-b.avif" alt="Product 2 Back">
+              </div>
+            </div>
+          </div>
+          <h3>Demon Slayer: Rengoku Oversized T-Shirts</h3>
+          <p>₹ 1050 <br>Price incl. of all taxes</p>
+          <button class="wishlist-btn" 
+                  data-name="Demon Slayer: Rengoku Oversized T-Shirts"
+                  data-price="1050"
+                  data-image="assets/t2-f.avif">❤️ Add to Wishlist</button>
+          <button class="add-to-cart" 
+                  data-name="Demon Slayer: Rengoku Oversized T-Shirts" 
+                  data-price="1050" 
+                  data-image="assets/t2-f.avif">🛍️ Add to Cart</button>
+        </div>
+
+        <!-- Product 3 -->
+        <div class="product-card">
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <img src="assets/mt-4f.avif" alt="Product 3 Front">
+              </div>
+              <div class="flip-card-back">
+                <img src="assets/mt-4b.avif" alt="Product 3 Back">
+              </div>
+            </div>
+          </div>
+          <h3>Harry Potter: The Silent Vow Tee</h3>
+          <p>₹ 1549 <br>Price incl. of all taxes</p>
+          <button class="wishlist-btn" 
+                  data-name="Harry Potter: The Silent Vow Tee"
+                  data-price="1549"
+                  data-image="assets/mt-4f.avif">❤️ Add to Wishlist</button>
+          <button class="add-to-cart" 
+                  data-name="Harry Potter: The Silent Vow Tee" 
+                  data-price="1549" 
+                  data-image="assets/mt-4f.avif">🛍️ Add to Cart</button>
+        </div>
+
+        <!-- Product 4 -->
+        <div class="product-card">
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <img src="assets/mt-5f.avif" alt="Product 4 Front">
+              </div>
+              <div class="flip-card-back">
+                <img src="assets/mt-5b.avif" alt="Product 4 Back">
+              </div>
+            </div>
+          </div>
+          <h3>Pop eye: Brown T-shirt</h3>
+          <p>₹ 1449 <br>Price incl. of all taxes</p>
+          <button class="wishlist-btn" 
+                  data-name="Pop eye: Brown T-shirt"
+                  data-price="1549"
+                  data-image="assets/mt-5f.avif">❤️ Add to Wishlist</button>
+          <button class="add-to-cart" 
+                  data-name="Pop eye: Brown T-shirt"
+                  data-price="1499" 
+                  data-image="assets/mt-5f.avif">🛍️ Add to Cart</button>
+        </div>
+
+        <!-- Product 5 -->
+        <div class="product-card">
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <img src="assets/mt-6f.avif" alt="Product 4 Front">
+              </div>
+              <div class="flip-card-back">
+                <img src="assets/mt-6b.avif" alt="Product 4 Back">
+              </div>
+            </div>
+          </div>
+          <h3>Shamshara : Blue T-shirt</h3>
+          <p>₹ 999 <br>Price incl. of all taxes</p>
+          <button class="wishlist-btn" 
+                  data-name="Shamshara : Blue T-shirt"
+                  data-price="999"
+                  data-image="assets/mt-6f.avif">❤️ Add to Wishlist</button>
+          <button class="add-to-cart" 
+                  data-name="Shamshara : Blue T-shirt"
+                  data-price="999" 
+                  data-image="assets/mt-6f.avif">🛍️ Add to Cart</button>
+        </div>
+<!--============================================= casual shirts=================================================================-->
+      </div><br>
+         <h3>CASUAL-SHIRTS</h3><br>
+      <div class="products">
+
+        <!-- Product 1 -->
+        <div class="product-card">
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <img src="assets/ms-1f.avif" alt="Product 1 Front">
+              </div>
+              <div class="flip-card-back">
+                <img src="assets/ms-1b.avif" alt="Product 1 Back">
+              </div>
+            </div>
+          </div>
+          <h3>Cotton Linen Stripes: Nautical
+Cotton Linen Shirts
+
+</h3>
+          <p>₹ 1499 <br>Price incl. of all taxes</p>
+          <button class="wishlist-btn" 
+                  data-name="Cotton Linen Stripes: Nautical
+Cotton Linen Shirts
+
+"
+                  data-price="1499"
+                  data-image="assets/ms-1f.avif">❤️ Add to Wishlist</button>
+          <button class="add-to-cart" 
+                  data-name="Cotton Linen Stripes: Nautical
+Cotton Linen Shirts
+
+" 
+                  data-price="1499" 
+                  data-image="assets/ms-1f.avif">🛍️ Add to Cart</button>
+        </div>
+         
+        <!-- Product 2 -->
+        <div class="product-card">
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <img src="assets/ms-2f.avif" alt="Product 2 Front">
+              </div>
+              <div class="flip-card-back">
+                <img src="assets/ms-2b.avif" alt="Product 2 Back">
+              </div>
+            </div>
+          </div>
+          <h3>Cotton Linen Stripes: Meadow
+Cotton Linen Shirts</h3>
+          <p>₹ 1599 <br>Price incl. of all taxes</p>
+          <button class="wishlist-btn" 
+                  data-name="Cotton Linen Stripes: Meadow
+Cotton Linen Shirts"
+                  data-price="1599"
+                  data-image="assets/ms-2f.avif">❤️ Add to Wishlist</button>
+          <button class="add-to-cart" 
+                  data-name="Cotton Linen Stripes: Meadow
+Cotton Linen Shirts" 
+                  data-price="1599" 
+                  data-image="assets/ms-2f.avif">🛍️ Add to Cart</button>
+        </div>
+
+        <!-- Product 3 -->
+        <div class="product-card">
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <img src="assets/ms-3f.avif" alt="Product 3 Front">
+              </div>
+              <div class="flip-card-back">
+                <img src="assets/ms-3b.avif" alt="Product 3 Back">
+              </div>
+            </div>
+          </div>
+          <h3>Cotton Linen: Lobster Bisque
+Cotton Linen Shirts</h3>
+          <p>₹ 1449 <br>Price incl. of all taxes</p>
+          <button class="wishlist-btn" 
+                  data-name="Cotton Linen: Lobster Bisque
+Cotton Linen Shirts"
+                  data-price="1449"
+                  data-image="assets/ms-3f.avif">❤️ Add to Wishlist</button>
+          <button class="add-to-cart" 
+                  data-name="Cotton Linen: Lobster Bisque
+Cotton Linen Shirts" 
+                  data-price="1449" 
+                  data-image="assets/ms-3f.avif">🛍️ Add to Cart</button>
+        </div>
+
+
+        <!--============================================= Formal-shirts=================================================================-->
+      </div><br>
+         <h3>FORMAL-SHIRTS</h3><br>
+      <div class="products">
+
+        <!-- Product 1 -->
+        <div class="product-card">
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <img src="assets/mfs-1f.jpg" alt="Product 1 Front">
+              </div>
+              <div class="flip-card-back">
+                <img src="assets/mfs-1b.jpg" alt="Product 1 Back">
+              </div>
+            </div>
+          </div>
+          <h3>Peter England Men's Micro-Checkered Formal Slim Fit Full Sleeve Shirt | Cotton Rich
+
+</h3>
+          <p>₹ 799 <br>Price incl. of all taxes</p>
+          <button class="wishlist-btn" 
+                  data-name="Peter England Men's Micro-Checkered Formal Slim Fit Full Sleeve Shirt | Cotton Rich
+
+"
+                  data-price="799"
+                  data-image="assets/mfs-1f.jpg">❤️ Add to Wishlist</button>
+          <button class="add-to-cart" 
+                  data-name="Peter England Men's Micro-Checkered Formal Slim Fit Full Sleeve Shirt | Cotton Rich
+
+" 
+                  data-price="799" 
+                  data-image="assets/mfs-1f.jpg">🛍️ Add to Cart</button>
+        </div>
+         
+        <!-- Product 2 -->
+        <div class="product-card">
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <img src="assets/mfs-2f.jpg" alt="Product 2 Front">
+              </div>
+              <div class="flip-card-back">
+                <img src="assets/mfs-2b.jpg" alt="Product 2 Back">
+              </div>
+            </div>
+          </div>
+          <h3>Peter England Men's Classic Checkered Formal Slim Fit Full Sleeve Shirt |Cotton-Rich</h3>
+          <p>₹ 799 <br>Price incl. of all taxes</p>
+          <button class="wishlist-btn" 
+                  data-name="Peter England Men's Classic Checkered Formal Slim Fit Full Sleeve Shirt | Cotton-Rich"
+                  data-price="799"
+                  data-image="assets/mfs-2f.jpg">❤️ Add to Wishlist</button>
+          <button class="add-to-cart" 
+                  data-name="Peter England Men's Classic Checkered Formal Slim Fit Full Sleeve Shirt | Cotton-Rich" 
+                  data-price="799" 
+                  data-image="assets/mfs-2f.jpg">🛍️ Add to Cart</button>
+        </div>
+
+        <!-- Product 3 -->
+        <div class="product-card">
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <img src="assets/mfs-3a.jpg" alt="Product 3 Front">
+              </div>
+              <div class="flip-card-back">
+                <img src="assets/mfs-3b.jpg" alt="Product 3 Back">
+              </div>
+            </div>
+          </div>
+          <h3>Peter England Men's Classic Textured Slim Fit Full Sleeve Shirt |Cotton Rich | Premium Dobby</h3>
+          <p>₹ 687 <br>Price incl. of all taxes</p>
+          <button class="wishlist-btn" 
+                  data-name="Peter England Men's Classic Textured Slim Fit Full Sleeve Shirt |Cotton Rich | Premium Dobby"
+                  data-price="687"
+                  data-image="assets/mfs-3a.jpg">❤️ Add to Wishlist</button>
+          <button class="add-to-cart" 
+                  data-name="Peter England Men's Classic Textured Slim Fit Full Sleeve Shirt |Cotton Rich | Premium Dobby" 
+                  data-price="687" 
+                  data-image="assets/mfs-3a.jpg">🛍️ Add to Cart</button>
+        </div>
+    </div>
+  </section>
+
+  <!-- Wishlist Popup -->
+  <div id="popup" class="popup">Item added to Wishlist!</div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-content">
+      <div class="footer-section about">
+        <h3>YUVAA</h3>
+        <p>Premium men’s fashion for every style – from everyday casuals to luxury outfits.</p>
+      </div>
+
+      <div class="footer-section links">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="#products">Shop</a></li>
+          <li><a href="#">Featured</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-section newsletter">
+        <h3>Subscribe</h3>
+        <form>
+          <input type="email" placeholder="Your email" required>
+          <button type="submit">Subscribe</button>
+        </form>
+      </div>
+
+      <div class="footer-section social">
+      <h3>Follow Us</h3>
+      <div class="social-icons">
+        <ul>
+     <a href="https://linkedin.com/in/samiksha-rawat-218460302"><i class="fab fa-linkedin-in" ></i></a>
+
+  </li>
+  <li class="animate">
+    <a href="https://github.com/samiksha-rawat"><i class="fab fa-github"></i></a>
+  </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+    </div>
+  </footer>
+
+<script>// men.js
+document.addEventListener("DOMContentLoaded", () => {
+  // Men products (names must match your productData in cart.js / wishlist.js)
+  const menProducts = [
+    { name: "Open Knit: Slate Polos", price: 1499, image: "assets/t1-f.avif" },
+    { name: "Demon Slayer: Rengoku Oversized T-Shirts", price: 1050, image: "assets/t2-f.avif" },
+    { name: "Cotton Linen: Russet Brown Shirts", price: 1499, image: "assets/t3-f.avif" }
+    // Add more products as needed
+  ];
+
+  const menGrid = document.getElementById("men-grid");
+  const menSearch = document.getElementById("men-search");
+
+  // Render products
+  function renderMenProducts(products) {
+    menGrid.innerHTML = "";
+    products.forEach(product => {
+      const card = document.createElement("div");
+      card.className = "product-card";
+      card.dataset.name = product.name.toLowerCase();
+
+      // Check if product is already in wishlist
+      const wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+      const isLiked = wishlist.some(item => item.name === product.name);
+
+      card.innerHTML = `
+        <img src="${product.image}" alt="${product.name}">
+        <h3>${product.name}</h3>
+        <p>₹${product.price}</p>
+        <button class="like-btn ${isLiked ? "liked" : ""}" 
+                onclick="addToWishlist('${product.name}', this)">❤</button>
+        <button class="add-to-cart-btn" onclick="addToCart('${product.name}')">Add to Cart</button>
+      `;
+      menGrid.appendChild(card);
+    });
+  }
+
+  // Initial render
+  renderMenProducts(menProducts);
+
+  // Search/filter functionality
+  menSearch.addEventListener("input", () => {
+    const query = menSearch.value.toLowerCase();
+    const filtered = menProducts.filter(p => p.name.toLowerCase().includes(query));
+    renderMenProducts(filtered);
+  });
+});
+
+</script>
+</body>
+</html>

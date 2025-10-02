@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Wishlist - YUVAA E-COMMERCE</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap');
+
+    :root {
+      --primary-color: #f7f6f6;
+      --secondary-color: #fff;
+      --tertiary-color: #000;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Oswald", sans-serif;
+    }
+
+    /* Header Styles */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: #fff;
+      z-index: 1000;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    .navbar {
+      display: flex;
+      align-items: center;
+      background: var(--primary-color);
+      height: 60px;
+      padding: 0 80px;
+      justify-content: space-between;
+    }
+
+    #logo {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--tertiary-color);
+      text-decoration: none;
+    }
+
+    .nav-menu {
+      list-style: none;
+      display: flex;
+      gap: 40px;
+    }
+
+    .nav-menu a {
+      text-decoration: none;
+      color: var(--tertiary-color);
+      padding: 0.5rem;
+    }
+
+    .search-box {
+      display: flex;
+      align-items: center;
+      background: #f3f4f6;
+      border-radius: 25px;
+      padding: 5px 10px;
+      margin-left: 20px;
+    }
+
+    .search-box input {
+      border: none;
+      outline: none;
+      background: transparent;
+      padding: 8px 10px;
+      width: 250px;
+      font-size: 13px;
+    }
+
+    .search-box button {
+      border: none;
+      background: transparent;
+      cursor: pointer;
+    }
+
+    .nav-icons {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .nav-icons .icon {
+      text-decoration: none;
+      color: #333;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    /* Main Content */
+    main {
+      margin-top: 80px;
+      padding: 40px 8%;
+      min-height: calc(100vh - 200px);
+      background-color: #f8f8f8;
+    }
+
+    .wishlist-header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .wishlist-header h1 {
+      font-size: 2.5rem;
+      color: #090909;
+      margin-bottom: 10px;
+      font-family: "Oswald", sans-serif;
+    }
+
+    .wishlist-header p {
+      font-size: 1.1rem;
+      color: #666;
+    }
+
+    .wishlist-stats {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin-bottom: 40px;
+      flex-wrap: wrap;
+    }
+
+    .stat-card {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      text-align: center;
+      min-width: 150px;
+    }
+
+    .stat-card .number {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #e91e63;
+      display: block;
+    }
+
+    .stat-card .label {
+      font-size: 0.9rem;
+      color: #666;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .wishlist-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .wishlist-actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .action-btn {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .clear-all-btn {
+      background: #ff4757;
+      color: white;
+    }
+
+    .clear-all-btn:hover {
+      background: #ff3838;
+      transform: translateY(-2px);
+    }
+
+    .continue-shopping-btn {
+      background: #2ed573;
+      color: white;
+    }
+
+    .continue-shopping-btn:hover {
+      background: #26c767;
+      transform: translateY(-2px);
+    }
+
+    .wishlist-items {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 25px;
+      margin-bottom: 40px;
+    }
+
+    .wishlist-card {
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+      overflow: hidden;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .wishlist-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+    }
+
+    .card-image {
+      width: 100%;
+      height: 250px;
+      background: #f5f5f5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .card-image::before {
+      content: '🖼️';
+      font-size: 3rem;
+      color: #ccc;
+      position: absolute;
+      z-index: 1;
+    }
+
+    .card-image img {
+      z-index: 2;
+      position: relative;
+    }
+
+    .remove-btn {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: rgba(255, 71, 87, 0.9);
+      border: none;
+      color: white;
+      padding: 8px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 1.2rem;
+      transition: all 0.3s ease;
+      width: 35px;
+      height: 35px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+    }
+
+    .remove-btn:hover {
+      background: #ff4757;
+      transform: scale(1.1);
+    }
+
+    .card-content {
+      padding: 20px;
+    }
+
+    .card-title {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 10px;
+      line-height: 1.3;
+    }
+
+    .card-price {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #e91e63;
+      margin-bottom: 15px;
+    }
+
+    .card-actions {
+      display: flex;
+      gap: 10px;
+    }
+
+    .add-to-cart-btn {
+      flex: 1;
+      background: #333;
+      color: white;
+      border: none;
+      padding: 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    .add-to-cart-btn:hover {
+      background: #555;
+      transform: translateY(-2px);
+    }
+
+    .move-to-cart-btn {
+      background: #2ed573;
+      color: white;
+    }
+
+    .move-to-cart-btn:hover {
+      background: #26c767;
+    }
+
+    .empty-wishlist {
+      text-align: center;
+      padding: 80px 20px;
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    }
+
+    .empty-wishlist-icon {
+      font-size: 4rem;
+      margin-bottom: 20px;
+      opacity: 0.5;
+    }
+
+    .empty-wishlist h2 {
+      font-size: 1.8rem;
+      color: #666;
+      margin-bottom: 15px;
+    }
+
+    .empty-wishlist p {
+      font-size: 1.1rem;
+      color: #999;
+      margin-bottom: 30px;
+    }
+
+    .popup {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: #333;
+      color: white;
+      padding: 15px 25px;
+      border-radius: 8px;
+      display: none;
+      z-index: 1001;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+      animation: slideIn 0.3s ease;
+    }
+
+    @keyframes slideIn {
+      from {
+        transform: translateX(100%);
+        opacity: 0;
+      }
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    .popup.success {
+      background: #2ed573;
+    }
+
+    .popup.error {
+      background: #ff4757;
+    }
+
+    .popup.cart {
+      background: #3498db;
+    }
+
+    /* Footer */
+    .footer {
+      background-color: #111;
+      color: #fff;
+      padding: 60px 8% 20px;
+    }
+
+    .footer-content {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 40px;
+    }
+
+    .footer-section h3 {
+      font-size: 1.3rem;
+      margin-bottom: 15px;
+    }
+
+    .footer-section p {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: #ccc;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      margin-top: 40px;
+      font-size: 0.9rem;
+      color: #777;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .navbar {
+        padding: 0 20px;
+      }
+
+      main {
+        padding: 20px 5%;
+      }
+
+      .wishlist-header h1 {
+        font-size: 2rem;
+      }
+
+      .wishlist-stats {
+        gap: 15px;
+      }
+
+      .stat-card {
+        min-width: 120px;
+        padding: 15px;
+      }
+
+      .wishlist-actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .wishlist-items {
+        grid-template-columns: 1fr;
+      }
+
+      .search-box,
+      .nav-icons {
+        display: none;
+      }
+
+      .footer-content {
+        flex-direction: column;
+        gap: 30px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .card-actions {
+        flex-direction: column;
+      }
+
+      .popup {
+        right: 20px;
+        left: 20px;
+        bottom: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <a href="index.html" id="logo">YUVAA</a>
+      
+      <ul class="nav-menu">
+        <li><a href="men.html">MEN</a></li>
+        <li><a href="women.html">WOMEN</a></li>
+        <li><a href="kids.html">KIDS</a></li>
+        <li><a href="beauty.html">BEAUTY</a></li>
+      </ul>
+
+      <div class="search-box">
+        <input type="text" placeholder="Search for products, brands and more...">
+        <button>🔍</button>
+      </div>
+
+      <div class="nav-icons">
+        <a href="wishlist.html" class="icon">❤️ <span>Wishlist (<span id="wishlist-count">0</span>)</span></a>
+        <a href="cart.html" class="icon">🛍️ <span>Cart (<span id="cart-count">0</span>)</span></a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="wishlist-header">
+      <h1>MY WISHLIST</h1>
+      <p>Your carefully curated collection of favorite items</p>
+    </div>
+
+    <div class="wishlist-stats">
+      <div class="stat-card">
+        <span class="number" id="total-items">0</span>
+        <span class="label">Items</span>
+      </div>
+      <div class="stat-card">
+        <span class="number" id="total-value">₹0</span>
+        <span class="label">Total Value</span>
+      </div>
+    </div>
+
+    <div class="wishlist-container">
+      <div class="wishlist-actions">
+        <button class="action-btn clear-all-btn" id="clear-all" style="display: none;">
+          🗑️ Clear All Items
+        </button>
+        <a href="index.html" class="action-btn continue-shopping-btn">
+          🛍️ Continue Shopping
+        </a>
+      </div>
+
+      <div id="wishlist-items" class="wishlist-items"></div>
+
+      <div id="empty-wishlist" class="empty-wishlist">
+        <div class="empty-wishlist-icon">💔</div>
+        <h2>Your wishlist is empty</h2>
+        <p>Discover amazing products and add them to your wishlist to keep track of items you love!</p>
+        <a href="index.html" class="action-btn continue-shopping-btn">Start Shopping</a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-content">
+      <div class="footer-section about">
+        <h3>YUVAA</h3>
+        <p>Leading fashion brand providing premium clothing and accessories for all styles and occasions.</p>
+      </div>
+      
+      <div class="footer-section links">
+        <h3>Quick Links</h3>
+        <p><a href="index.html" style="color: #ccc; text-decoration: none;">Home</a></p>
+        <p><a href="#" style="color: #ccc; text-decoration: none;">Shop</a></p>
+        <p><a href="#" style="color: #ccc; text-decoration: none;">About</a></p>
+        <p><a href="#" style="color: #ccc; text-decoration: none;">Contact</a></p>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2025 YUVAA. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <div id="popup" class="popup"></div>
+
+  <script>
+    // Product data mapping - matches your original structure for name-based lookup
+    const productData = {
+      "Open Knit: Slate Polos": {
+        price: "₹ 1499",
+        image: "assets/t1-f.avif"
+      },
+      "Demon Slayer: Rengoku": {
+        price: "₹ 1050",
+        image: "assets/t2-f.avif"
+      },
+      "Cotton Linen: Russet Brown": {
+        price: "₹ 1499",
+        image: "assets/t3-f.avif"
+      },
+      "Hello Kitty: Varsity Tee": {
+        price: "₹ 999",
+        image: "assets/t5-f.avif"
+      },
+      "Solids: Charcoal Jeans": {
+        price: "₹ 1899",
+        image: "assets/wj1-f.avif"
+      },
+      "Attack On Titan: Eren Tee": {
+        price: "₹ 999",
+        image: "assets/wt2-f.avif"
+      },
+      "Harry Potter: The Silent Vow Tee": {
+        price: "₹ 1549",
+        image: "assets/mt-4f.avif"
+      },
+      "Pop eye: Brown T-shirt": {
+        price: "₹ 1499",
+        image: "assets/mt-5f.avif"
+      },
+      "Shamshara : Blue T-shirt": {
+        price: "₹ 999",
+        image: "assets/mt-6f.avif"
+      },
+      "Cotton Linen Stripes: Nautical Cotton Linen Shirts": {
+        price: "₹ 1499",
+        image: "assets/ms-1f.avif"
+      },
+      "Cotton Linen Stripes: Meadow Cotton Linen Shirts": {
+        price: "₹ 1599",
+        image: "assets/ms-2f.avif"
+      },
+      "Cotton Linen: Lobster Bisque Cotton Linen Shirts": {
+        price: "₹ 1449",
+        image: "assets/ms-3f.avif"
+      },
+      "Peter England Men's Micro-Checkered Formal Slim Fit Full Sleeve Shirt": {
+        price: "₹ 799",
+        image: "assets/mfs-1f.jpg"
+      },
+      "Peter England Men's Classic Checkered Formal Slim Fit Full Sleeve Shirt": {
+        price: "₹ 799",
+        image: "assets/mfs-2f.jpg"
+      },
+      "Peter England Men's Classic Textured Slim Fit Full Sleeve Shirt": {
+        price: "₹ 687",
+        image: "assets/mfs-3a.jpg"
+      }
+    };
+
+    document.addEventListener("DOMContentLoaded", () => {
+      console.log("DOM loaded, starting wishlist initialization...");
+      
+      // Get elements
+      const wishlistItemsContainer = document.getElementById("wishlist-items");
+      const emptyWishlistMessage = document.getElementById("empty-wishlist");
+      const wishlistCount = document.getElementById("wishlist-count");
+      const cartCount = document.getElementById("cart-count");
+      const totalItemsElement = document.getElementById("total-items");
+      const totalValueElement = document.getElementById("total-value");
+      const clearAllBtn = document.getElementById("clear-all");
+      const popup = document.getElementById("popup");
+
+      console.log("Elements found:", {
+        wishlistItemsContainer: !!wishlistItemsContainer,
+        emptyWishlistMessage: !!emptyWishlistMessage,
+        wishlistCount: !!wishlistCount,
+        totalItemsElement: !!totalItemsElement,
+        totalValueElement: !!totalValueElement
+      });
+
+      // Load wishlist and cart from localStorage (wishlist stores product names as strings)
+      let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+      console.log("Loaded wishlist:", wishlist); // Debug log
+      console.log("ProductData keys:", Object.keys(productData)); // Debug log
+
+      // Function to show popup
+      function showPopup(message, type = "success") {
+        popup.textContent = message;
+        popup.className = `popup ${type}`;
+        popup.style.display = "block";
+        setTimeout(() => {
+          popup.style.display = "none";
+        }, 3000);
+      }
+
+      // Function to save data to localStorage
+      function saveWishlist() {
+        localStorage.setItem("wishlist", JSON.stringify(wishlist));
+      }
+
+      function saveCart() {
+        localStorage.setItem("cart", JSON.stringify(cart));
+      }
+
+      // Function to update wishlist count and stats
+      function updateWishlistStats() {
+        wishlistCount.textContent = wishlist.length;
+        totalItemsElement.textContent = wishlist.length;
+        
+        // Update cart count
+        const totalCartItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+        if (cartCount) cartCount.textContent = totalCartItems;
+
+        // Calculate total value - wishlist contains product names (strings)
+        let totalValue = 0;
+        wishlist.forEach(itemName => {
+          if (productData[itemName]) {
+            const price = parseInt(productData[itemName].price.replace(/[₹,\s]/g, ''));
+            totalValue += price;
+          }
+        });
+        
+        totalValueElement.textContent = `₹${totalValue.toLocaleString()}`;
+        
+        // Show/hide clear all button
+        clearAllBtn.style.display = wishlist.length > 0 ? "inline-block" : "none";
+      }
+
+      // Function to remove item from wishlist (itemName is a string)
+      function removeFromWishlist(itemName) {
+        const index = wishlist.indexOf(itemName);
+        if (index > -1) {
+          wishlist.splice(index, 1);
+          saveWishlist();
+          showPopup(`${itemName} removed from wishlist!`, "error");
+          renderWishlist();
+          updateWishlistStats();
+        }
+      }
+
+      // Function to add item to cart (expects product name, price, image)
+      function addToCart(productName, price, image) {
+        const existingItem = cart.find(item => item.name === productName);
+        
+        if (existingItem) {
+          existingItem.quantity += 1;
+          showPopup(`Increased quantity of ${productName} in cart!`, "cart");
+        } else {
+          cart.push({
+            name: productName,
+            quantity: 1,
+            price: typeof price === 'string' ? parseInt(price.replace(/[₹,\s]/g, '')) : price,
+            image: image
+          });
+          showPopup(`${productName} added to cart!`, "cart");
+        }
+        
+        saveCart();
+        updateWishlistStats();
+      }
+
+      // Function to render wishlist items
+      function renderWishlist() {
+        console.log("=== RENDER WISHLIST DEBUG ===");
+        console.log("Wishlist array:", wishlist);
+        console.log("Wishlist container:", wishlistItemsContainer);
+        console.log("Empty message element:", emptyWishlistMessage);
+        
+        wishlistItemsContainer.innerHTML = "";
+
+        if (wishlist.length === 0) {
+          console.log("Wishlist is empty, showing empty message");
+          emptyWishlistMessage.style.display = "block";
+          wishlistItemsContainer.style.display = "none";
+          return;
+        }
+
+        console.log("Wishlist has items, hiding empty message");
+        emptyWishlistMessage.style.display = "none";
+        wishlistItemsContainer.style.display = "grid";
+
+        // wishlist contains product names (strings), need to look up product data
+        wishlist.forEach((itemName, index) => {
+          console.log(`Processing item ${index}: "${itemName}"`);
+          const product = productData[itemName];
+          console.log(`Product data for "${itemName}":`, product);
+          
+          if (!product) {
+            console.error(`Product data not found for: "${itemName}"`);
+            console.log("Available product keys:", Object.keys(productData));
+            return;
+          }
+
+          const wishlistCard = document.createElement("div");
+          wishlistCard.className = "wishlist-card";
+          
+          wishlistCard.innerHTML = `
+            <div class="card-image">
+              <img src="${product.image}" alt="${itemName}" onload="console.log('Image loaded: ${product.image}')" onerror="console.log('Image failed: ${product.image}'); this.style.display='none';">
+              <button class="remove-btn" onclick="removeFromWishlistHandler('${itemName.replace(/'/g, "\\'")}');" title="Remove from wishlist">
+                ×
+              </button>
+            </div>
+            <div class="card-content">
+              <h3 class="card-title">${itemName}</h3>
+              <div class="card-price">${product.price}</div>
+              <div class="card-actions">
+                <button class="add-to-cart-btn" onclick="addToCartHandler('${itemName.replace(/'/g, "\\'")}');">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          `;
+
+          console.log("Appending card for:", itemName);
+          wishlistItemsContainer.appendChild(wishlistCard);
+        });
+        
+        console.log("Final container children count:", wishlistItemsContainer.children.length);
+        console.log("=== END RENDER DEBUG ===");
+      }
+
+      // Clear all wishlist items
+      clearAllBtn.addEventListener("click", () => {
+        if (confirm("Are you sure you want to clear all items from your wishlist?")) {
+          wishlist = [];
+          saveWishlist();
+          showPopup("Wishlist cleared!", "error");
+          renderWishlist();
+          updateWishlistStats();
+        }
+      });
+
+      // Make functions global for onclick handlers
+      window.removeFromWishlistHandler = function(itemName) {
+        removeFromWishlist(itemName);
+      };
+
+      window.addToCartHandler = function(itemName) {
+        const product = productData[itemName];
+        if (product) {
+          addToCart(itemName, product.price, product.image);
+        }
+      };
+
+      // Initial render
+      renderWishlist();
+      updateWishlistStats();
+    });
+  </script>
+</body>
+</html>

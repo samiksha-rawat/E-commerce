@@ -1,0 +1,14 @@
+/* wishlist.css */
+
+.wishlist-container {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+#empty-wishlist-message {
+    text-align: center;
+    font-size: 1.2em;
+    color: #666;
+    margin-top: 50px;
+}

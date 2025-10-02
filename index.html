@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+
+  <title>YUVAA E-COMMERCE</title>
+  <link rel="stylesheet" href="index.css">
+  <style>
+    /* Additional styles for cart integration */
+    .add-to-cart {
+      background: #333 !important;
+      color: white !important;
+      border: none !important;
+      padding: 10px 15px !important;
+      border-radius: 6px !important;
+      cursor: pointer !important;
+      font-weight: 500 !important;
+      transition: all 0.3s ease !important;
+      margin-top: 5px !important;
+      width: 100% !important;
+      font-size: 14px !important;
+    }
+
+    .add-to-cart:hover {
+      background: #555 !important;
+      transform: translateY(-2px) !important;
+    }
+
+    .cart-count {
+      background: #e91e63;
+      color: white;
+      border-radius: 50%;
+      padding: 2px 6px;
+      font-size: 12px;
+      font-weight: bold;
+      margin-left: 5px;
+    }
+
+    #popup {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: #333;
+      color: white;
+      padding: 15px 25px;
+      border-radius: 8px;
+      display: none;
+      z-index: 1001;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+      animation: slideIn 0.3s ease;
+    }
+
+    @keyframes slideIn {
+      from {
+        transform: translateX(100%);
+        opacity: 0;
+      }
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    #popup.success {
+      background: #2ed573;
+    }
+
+    #popup.error {
+      background: #ff4757;
+    }
+
+    #popup.cart {
+      background: #333;
+    }
+
+    /* Responsive cart count */
+    @media (max-width: 768px) {
+      .nav-icons span {
+        display: none;
+      }
+      .cart-count {
+        position: absolute;
+        top: -8px;
+        right: -8px;
+      }
+    }
+  </style>
+  <script src="index.js" defer></script>
+</head>
+<body>
+  <header>
+  <nav class="navbar">
+    <!-- Logo -->
+    <a href="index.html" id="logo">YUVAA</a>
+
+    <!-- Hamburger (visible only on mobile) -->
+    <div class="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+    <!-- Navigation Menu -->
+    <ul class="nav-menu">
+      <!-- MEN -->
+      <li class="dropdown">
+        <a href="men.html" class="hover-underline dropdown-toggle">MEN</a>
+        <div class="dropdown-content dropbox">
+          <div class="column">
+            <a href="#"><h6>Topwear</h6></a>
+            <a href="#">T-Shirts</a>
+            <a href="#">Casual-Shirts</a>
+            <a href="#">Formal-Shirts</a>
+            
+          </div>
+          <div class="column">
+            <a href="#"><h6>Footwear</h6></a>
+            <a href="#">Sneakers</a>
+            <a href="#">Formal-Shoes</a>
+          </div>
+          <div class="column">
+            <a href="#"><h6>Fashion-Acessories</h6></a>
+            <a href="#">Wallets</a>
+            <a href="#">Watches</a>
+            <a href="#">Helmets</a>
+          </div>
+          <div class="column">
+            <a href="#"><h6>Bottomwear</h6></a>
+            <a href="#">Jeans</a>
+            <a href="#">Casual-Trousers</a>
+
+          </div>
+        </div>
+      </li>
+
+      <!-- WOMEN -->
+      <li class="dropdown">
+        <a href="women.html" class="hover-underline dropdown-toggle">WOMEN</a>
+        <div class="dropdown-content dropbox">
+          <div class="column">
+            <a href="#"><h6>Indian & Fusion-Wear</h6></a>
+            <a href="">Kurtas & Suits</a>
+            <a href="#">Sarees</a>
+            <a href="#">Ethnic-Wear</a>
+            <a href="#">Lehenga-Choli</a>
+            <a href="#">Duppatas & Shauls</a>
+          </div>
+          <div class="column">
+            <a href="#"><h6>Western Wear</h6></a>
+            <a href="#">Dresses</a>
+            <a href="#">Tops</a>
+            <a href="#">T-Shirts</a>
+            <a href="#">Jeans</a>
+            <a href="#">Shrugs</a>
+          </div>
+          <div class="column">
+            <a href="#"><h6>Footwear</h6></a>
+            <a href="#">Flats</a>
+            <a href="#">Casual-Shoes</a>
+            <a href="#">Boots</a>
+            <a href="#">Heels</a>
+            <a href="#">Sports Shoes</a>
+          </div>
+          <div class="column">
+            <a href="#"><h6>Jewellery</h6></a>
+            <a href="#">Fashion Jewellery</a>
+            <a href="#">Fine Jewellery</a>
+            <a href="#">Earrings</a>
+          </div>
+        </div>
+      </li>
+
+      <!-- KIDS -->
+      <li class="dropdown">
+        <a href="kids.html" class="hover-underline dropdown-toggle">KIDS</a>
+        <div class="dropdown-content dropbox">
+          <div class="column">
+            <a href="#"><h6>Boys Clothing</h6></a>
+            <a href="#">T-Shirts</a>
+            <a href="#">Shirts</a>
+            <a href="#">Shorts</a>
+            <a href="#">Jeans</a>
+            <a href="#">Trousers</a>
+          </div>
+          <div class="column">
+            <a href="#"><h6>Girls Clothing</h6></a>
+            <a href="#">Dresses</a>
+            <a href="#">Tops</a>
+            <a href="#">T-Shirts</a>
+            <a href="#">Clothing Sets</a>
+            <a href="#">Party Wear</a>
+          </div>
+          <div class="column">
+            <a href="#"><h6>Toys & Games</h6></a>
+            <a href="#">Action Figures</a>
+            <a href="#">Activity Toys</a>
+            <a href="#">Soft Toys</a>
+            <a href="#">Learning & Development</a>
+          </div>
+        </div>
+      </li>
+
+      <!-- BEAUTY -->
+      <li class="dropdown">
+        <a href="beauty.html" class="hover-underline dropdown-toggle">BEAUTY</a>
+        <div class="dropdown-content dropbox">
+          <div class="column">
+            <a href="#"><h6>Haircare</h6></a>
+            <a href="#">Shampoo</a>
+            <a href="#">Conditioner</a>
+            <a href="#">Hair Oil</a>
+            <a href="#">Hair Cream</a>
+            <a href="#">Hair Serum</a>
+          </div>
+          <div class="column">
+            <a href="#"><h6>Men's Grooming</h6></a>
+            <a href="#">Trimmers</a>
+            <a href="#">Beard Oil</a>
+            <a href="#">Hair Wax</a>
+          </div>
+          <div class="column">
+            <a href="#"><h6>Makeup</h6></a>
+            <a href="#">Lipstick</a>
+            <a href="#">Lip Gloss</a>
+            <a href="#">Kajal</a>
+            <a href="#">Nail Polish</a>
+          </div>
+        </div>
+      </li>
+    </ul>
+
+    <!-- Search Box -->
+    <div class="search-box">
+      <input type="text" placeholder="Search for products, brands and more...">
+      <button>
+        🔍
+      </button>
+    </div>
+
+    <!-- Icons -->
+   <div class="nav-icons">
+  <a href="wishlist.html" class="icon " class="hover-underline dropdown-toggle">❤️ <span>Wishlist (<span id="wishlist-count">0</span>)</span></a>
+  <a href="cart.html" class="icon">🛍️ <span>Cart (<span id="cart-count">0</span>)</span></a>
+</div>
+
+  </nav>
+</header>
+ 
+<!-- ============================== banner section ==========================   -->
+<main>
+      <section class="hero">
+    <div class="hero-content">
+      <h1>Find Clothes That Matches Your Style</h1>
+      <p>Browse through our diverse range of meticulously crafted garments, 
+         designed to bring out your individuality and cater to your sense of style.</p>
+      <a href="#featuredproducts" class="btn">Shop Now</a>
+
+      <div class="stats">
+        <div class="stat">200+ <span>International Brands</span></div>
+        <div class="stat">2,000+ <span>High-Quality Products</span></div>
+        <div class="stat">30,000+ <span>Happy Customers</span></div>
+      </div>
+    </div>
+  </section>
+<!-- ============================= LOGO SECTION -========================================-->
+ 
+</main>
+<div class="marquee">
+  <div class="marquee-track">
+     <img src="assets/jack&jones.png" alt="Brand 1">
+    <img src="assets/jockey1.png" alt="Brand 2">
+    <img src="assets/prada1.png" alt="Brand 3">
+    <img src="assets/logo4.png" alt="Brand 4">
+    <img src="assets/lonsdale1.png" alt="Brand 5">
+    <!-- Duplicate the images for a seamless loop -->
+    <img src="assets/nike.png" alt="nike">
+     <img src="assets/armani.png" alt="armani">
+     <img src="assets/dainese.png" alt="Dolce">
+     <img src="assets/dolce-gabbana-.png" alt="9">
+     <img src="assets/locaste.webp" alt="locaste">
+      <img src="assets/jack&jones.png" alt="Brand 1">
+    <img src="assets/jockey1.png" alt="Brand 2">
+    <img src="assets/prada1.png" alt="Brand 3">
+    <img src="assets/logo4.png" alt="Brand 4">
+    <img src="assets/lonsdale1.png" alt="Brand 5">
+    <!-- Duplicate the images for a seamless loop -->
+    <img src="assets/nike.png" alt="nike">
+     <img src="assets/armani.png" alt="armani">
+     <img src="assets/dainese.png" alt="Dolce">
+     <img src="assets/dolce-gabbana-.png" alt="9">
+     <img src="assets/locaste.webp" alt="locaste">
+  </div>
+</div>
+
+
+<!--================================= FEATURED PRODUCTS SECTION =====================================-->
+<section class="featured">
+  <div class="container">
+    <h2 class="section-title" id="featuredproducts">FEATURED PRODUCTS</h2>
+    <div class="products">
+
+      <!-- Product 1 -->
+      <div class="product-card">
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="assets/t1-f.avif" alt="Product 2 Front">
+            </div>
+            <div class="flip-card-back">
+              <img src="assets/t1-b.avif" alt="Product 2 Back">
+            </div>
+          </div>
+        </div>
+        <h3>Open Knit: Slate Polos</h3>
+        <p>₹ 1499 <br>Price incl. of all taxes</p>
+        <button class="wishlist-btn" data-name="Open Knit: Slate Polos">❤️ Add to Wishlist</button>
+        <button class="add-to-cart" 
+        data-name="Open Knit: Slate Polos" 
+        data-price="1499" 
+        data-image="assets/t1-f.avif">
+  🛍️ Add to Cart
+</button>
+
+      </div>
+
+      <!-- Product 2 -->
+      <div class="product-card">
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="assets/t2-f.avif" alt="Product 2 Front">
+            </div>
+            <div class="flip-card-back">
+              <img src="assets/t2-b.avif" alt="Product 2 Back">
+            </div>
+          </div>
+        </div>
+        <h3>Demon Slayer: Rengoku Oversized T-Shirts</h3>
+        <p>₹ 1050 <br>Price incl. of all taxes</p>
+        <button class="wishlist-btn" data-name="Demon Slayer: Rengoku">❤️ Add to Wishlist</button>
+        <button class="add-to-cart" 
+        data-name="Demon Slayer: Rengoku Oversized T-Shirts" 
+        data-price="1050" 
+        data-image="assets/t2-f.avif">
+  🛍️ Add to Cart
+</button>
+      </div>
+
+      <!-- Product 3 -->
+      <div class="product-card">
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="assets/t3-f.avif" alt="Product 3 Front">
+            </div>
+            <div class="flip-card-back">
+              <img src="assets/t3-b.avif" alt="Product 3 Back">
+            </div>
+          </div>
+        </div>
+        <h3>Cotton Linen: Russet Brown Shirts</h3>
+        <p>₹ 1499 <br>Price incl. of all taxes</p>
+        <button class="wishlist-btn" data-name="Cotton Linen: Russet Brown">❤️ Wishlist</button>
+        <button class="add-to-cart" 
+        data-name="Cotton Linen: Russet Brown Shirts" 
+        data-price="1499" 
+        data-image="assets/t3-f.avif">
+  🛍️ Add to Cart
+</button>
+      </div>
+
+      <!-- Product 4 -->
+      <div class="product-card">
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="assets/t5-f.avif" alt="Product 4 Front">
+            </div>
+            <div class="flip-card-back">
+              <img src="assets/t5-b.avif" alt="Product 4 Back">
+            </div>
+          </div>
+        </div>
+        <h3>Hello Kitty: Varsity Women Oversized T-Shirts</h3>
+        <p>₹ 999 <br>Price incl. of all taxes</p>
+        <button class="wishlist-btn" data-name="Hello Kitty: Varsity Tee">❤️ Wishlist</button>
+        <button class="add-to-cart" 
+        data-name="Hello Kitty: Varsity Women Oversized T-Shirts" 
+        data-price="999" 
+        data-image="assets/t5-f.avif">
+  🛍️ Add to Cart
+</button>
+      </div>
+
+      <!-- Product 5 -->
+      <div class="product-card">
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="assets/wj1-f.avif" alt="Product 5 Front">
+            </div>
+            <div class="flip-card-back">
+              <img src="assets/wj1-b.avif" alt="Product 5 Back">
+            </div>
+          </div>
+        </div>
+        <h3>Solids: Charcoal (Straight Fit) Women Jeans</h3>
+        <p>₹ 1899 <br>Price incl. of all taxes</p>
+        <button class="wishlist-btn" data-name="Solids: Charcoal Jeans">❤️ Wishlist</button>
+        <button class="add-to-cart" 
+        data-name="Solids: Charcoal (Straight Fit) Women Jeans" 
+        data-price="1899" 
+        data-image="assets/wj1-f.avif">
+  🛍️ Add to Cart
+</button>
+      </div>
+
+      <!-- Product 6 -->
+      <div class="product-card">
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="assets/wt2-f.avif" alt="Product 6 Front">
+            </div>
+            <div class="flip-card-back">
+              <img src="assets/wt2-b.avif" alt="Product 6 Back">
+            </div>
+          </div>
+        </div>
+        <h3>Attack On Titan: Eren Boyfriend T-Shirts</h3>
+        <p>₹ 999 <br>Price incl. of all taxes</p>
+        <button class="wishlist-btn" data-name="Attack On Titan: Eren Tee">❤️ Wishlist</button>
+        <button class="add-to-cart" 
+        data-name="Attack On Titan: Eren Boyfriend T-Shirts" 
+        data-price="999" 
+        data-image="assets/wt2-f.avif">
+  🛍️ Add to Cart
+</button>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Popup -->
+<div id="popup">Item added to Wishlist!</div>
+
+<!--========================================= FOOTER SECTION ============================================-->
+<footer class="footer">
+  <div class="container footer-content">
+    <div class="footer-section about">
+      <h3>YUVAA</h3>
+      <p>Leading fashion brand providing premium clothing and accessories for all styles and occasions.</p>
+    </div>
+
+    <div class="footer-section links">
+      <h3>Quick Links</h3>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="#featuredproducts">Shop</a></li>
+        <li><a href="#featuredproducts">Featured</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-section newsletter">
+      <h3>Subscribe</h3>
+      <p>Get the latest updates and offers.</p>
+      <form>
+        <input type="email" placeholder="Your email" required>
+        <button type="submit">Subscribe</button>
+      </form>
+    </div>
+
+    <div class="footer-section social">
+      <h3>Follow Us</h3>
+      <div class="social-icons">
+        <ul>
+           <li class="animate">
+    <a href="https://linkedin.com/in/samiksha-rawat-218460302"><i class="fab fa-linkedin-in" ></i></a>
+
+  </li>
+  <li class="animate">
+    <a href="https://github.com/samiksha-rawat"><i class="fab fa-github"></i></a>
+  </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>&copy; 2025 YUVAA. All rights reserved.</p>
+  </div>
+
+</footer>
+
+<script>
+// Enhanced JavaScript for cart and wishlist integration
+document.addEventListener("DOMContentLoaded", () => {
+  // Get elements
+  const wishlistButtons = document.querySelectorAll(".wishlist-btn");
+  const addToCartButtons = document.querySelectorAll(".add-to-cart");
+  const wishlistCount = document.getElementById("wishlist-count");
+  const cartCount = document.getElementById("cart-count");
+  const popup = document.getElementById("popup");
+
+  // Load cart and wishlist from storage (using variables for Claude environment)
+  let cart = [];
+  let wishlist = [];
+
+  // Try to load from localStorage if available
+  try {
+    cart = JSON.parse(localStorage?.getItem("cart")) || [];
+    wishlist = JSON.parse(localStorage?.getItem("wishlist")) || [];
+  } catch (e) {
+    console.log("LocalStorage not available, using memory storage");
+  }
+
+  // Function to show popup
+  function showPopup(message, type = "success") {
+    popup.textContent = message;
+    popup.className = `popup ${type}`;
+    popup.style.display = "block";
+    setTimeout(() => {
+      popup.style.display = "none";
+    }, 3000);
+  }
+
+  // Function to update counts
+  function updateCounts() {
+    if (wishlistCount) {
+      wishlistCount.textContent = wishlist.length;
+    }
+    if (cartCount) {
+      const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+      cartCount.textContent = totalItems;
+    }
+  }
+
+  // Function to save to storage
+  function saveToStorage() {
+    try {
+      if (localStorage) {
+        localStorage.setItem("cart", JSON.stringify(cart));
+        localStorage.setItem("wishlist", JSON.stringify(wishlist));
+      }
+    } catch (e) {
+      console.log("Could not save to localStorage");
+    }
+  }
+
+  // Function to add to wishlist
+  function addToWishlist(itemName) {
+    if (!wishlist.includes(itemName)) {
+      wishlist.push(itemName);
+      saveToStorage();
+      showPopup(`${itemName} added to wishlist!`, "success");
+      updateCounts();
+    } else {
+      showPopup(`${itemName} is already in your wishlist!`, "error");
+    }
+  }
+
+  // Function to add to cart
+  function addToCart(itemName, price, image) {
+    // Check if item already exists in cart
+    const existingItem = cart.find(item => item.name === itemName);
+    
+    if (existingItem) {
+      existingItem.quantity += 1;
+      showPopup(`Increased quantity of ${itemName} in cart!`, "cart");
+    } else {
+      cart.push({ 
+        name: itemName, 
+        quantity: 1,
+        price: parseInt(price),
+        image: image 
+      });
+      showPopup(`${itemName} added to cart!`, "cart");
+    }
+    
+    saveToStorage();
+    updateCounts();
+  }
+
+  // Add event listeners for wishlist buttons
+  wishlistButtons.forEach(button => {
+    button.addEventListener("click", (e) => {
+      e.preventDefault();
+      const itemName = button.getAttribute("data-name");
+      addToWishlist(itemName);
+    });
+  });
+
+  // Add event listeners for cart buttons
+  addToCartButtons.forEach(button => {
+    button.addEventListener("click", (e) => {
+      e.preventDefault();
+      const itemName = button.getAttribute("data-name");
+      const price = button.getAttribute("data-price");
+      const image = button.getAttribute("data-image");
+      addToCart(itemName, price, image);
+    });
+  });
+
+  // Initial count update
+  updateCounts();
+
+  // Load existing index.js functionality if it exists
+  if (typeof window.indexJS !== 'undefined') {
+    window.indexJS();
+  }
+});
+
+</script>
+
+</body>
+</html>
